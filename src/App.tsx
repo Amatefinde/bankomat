@@ -19,20 +19,16 @@ function App() {
 
 
     const cassettes = useSelector((state: RootState) => state.cassettes.cassettes);
-    const [userMoney, setUserMoney] = useState<number>(0)
+    const [userMoney, setUserMoney] = useState<string>("")
     const [calculateFeedback, setCalculateFeedback] = useState("")
 
     function handleCalculate() {
-        setCalculateFeedback(calculateWithdrawal(cassettes, userMoney))
+        setCalculateFeedback(calculateWithdrawal(cassettes, parseInt(userMoney)))
     }
 
     function handleUserMoneyInput(e: React.ChangeEvent<HTMLInputElement>) {
         if (isNumericString(e.target.value)) {
-            if (e.target.value != "") {
-                setUserMoney(parseInt(e.target.value))
-            } else {
-                setUserMoney(e.target.value)
-            }
+            setUserMoney(e.target.value)
         }
     }
 
