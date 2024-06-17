@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import  {useState} from 'react'
 import "./App.css"
 import {Box, Button, Card, Input, Sheet, Slider, Typography} from "@mui/joy";
-import CassettesSlice, {addCassette, removeCassette, setNumberCassette} from "./store/cassettes/cassettesSlice.ts";
+import { setNumberCassette} from "./store/cassettes/cassettesSlice.ts";
 import CassetteComponent from "./components/СassetteComponent.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "./store";
@@ -11,6 +11,7 @@ function App() {
     const dispatch = useDispatch<AppDispatch>();
 
     function handleChange(e: Event, ) {
+        // @ts-ignore
         const newValue = e.target?.value
         dispatch(setNumberCassette(newValue))
     }
@@ -33,11 +34,12 @@ function App() {
 
         <Card variant={"soft"} sx={{margin: 1}}>
             <Typography level={"title-md"}>Money requested (in rub):</Typography>
+            {/*@ts-ignore*/}
             <Input value={userMoney} onChange={e => setUserMoney(e.target.value)}/>
             {calculateFeedback}
             <Button onClick={handleCalculate}>Calculate</Button>
         </Card>
-        {cassettes.map((value, idx) => <CassetteComponent idx={idx} key={idx}/>)}
+        {cassettes.map((_, idx) => <CassetteComponent idx={idx} key={idx}/>)}
     </Sheet>
 }
 

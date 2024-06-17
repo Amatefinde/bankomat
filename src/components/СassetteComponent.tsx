@@ -15,6 +15,7 @@ const CassetteComponent: React.FC<ICassetteComponentProps> = ({idx}) => {
     const cassette = cassettes[idx]
     const dispatch = useDispatch<AppDispatch>();
     function handleAmountChange(e: Event) {
+        // @ts-ignore
         const new_value = e.target?.value
         if (!isNumericString(new_value)) {
             return
@@ -38,7 +39,7 @@ const CassetteComponent: React.FC<ICassetteComponentProps> = ({idx}) => {
         dispatch(editCassette(editCassetteObj))
     }
 
-    function handleDenominationChange(e: Event, new_value: number) {
+    function handleDenominationChange(_: React.KeyboardEvent, new_value: number) {
         const editCassetteObj: IEditCassette = {
             cassetteIdx: idx,
             cassette: {
@@ -60,6 +61,7 @@ const CassetteComponent: React.FC<ICassetteComponentProps> = ({idx}) => {
             </Box>
             <Box>
                 <Typography level={"body-xs"}>Denomination</Typography>
+                {/*@ts-ignore*/}
                 <Select onChange={handleDenominationChange} value={cassette.denomination}>
                     <Option value={100}>100</Option>
                     <Option value={200}>200</Option>
@@ -71,6 +73,7 @@ const CassetteComponent: React.FC<ICassetteComponentProps> = ({idx}) => {
             </Box>
             <Box>
                 <Typography level={"body-xs"}>Banknotes left</Typography>
+                {/*@ts-ignore*/}
                 <Input value={cassette.amount} onChange={handleAmountChange}></Input>
             </Box>
         </Card>
