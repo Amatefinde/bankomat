@@ -5,7 +5,9 @@ function calculateWithdrawal(cassettes: ICassette[], amount: number): string {
     const start = performance.now();
     const denominations = [5000, 2000, 1000, 500, 200, 100];
     const result: { [key: number]: number } = {};
-
+    if (amount < 100) {
+        return "Нельзя выдать сумму меньше номинала минимальной банкноты"
+    }
     let remaining = amount;
     for (const denomination of denominations) {
         const availableCassette = cassettes.find(
