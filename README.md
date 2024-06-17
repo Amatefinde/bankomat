@@ -1,1 +1,1 @@
-тут будет описания
+Демка - https://amatefinde.github.io/bankomat/
